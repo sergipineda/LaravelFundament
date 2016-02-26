@@ -11,36 +11,45 @@
 |
 */
 
-interface Fuel {
-    public function getPrice();
-}
+
 
 class Jeep
 {
 
-    public function _construct(Petrol $fuel) {
+    public function _construct(Fuel $fuel) {
+        $this-> fuel= $fuel;
 
     }
 
-    public function refuel($litres, Petrol $fuel)
+    public function refuel($litres)
 
     {
-        $fuel = new Petrol;
+
         return $litres * $this->fuel->getPrice();
     }
 }
 
-class Petrol
+class Petrol implements Fuel
 {
     public function getPrice()
     {
-        return 130.7;
+        return 1;
+    }
+}
+class Gasolina implements Fuel
+{
+    public function getPrice()
+    {
+        return 2;
     }
 }
 
 //$gasoil = new Petrol;
 //$car = new Jeep($gasolina);
 //$gasolina = new Gasolina;
+$car = $this-> app->bind('Fuel','Gasolina' );
+
 
 $car = $this->app->make('Jeep');
-echo $car->refuel(60);
+$cost= $car->refuel(60);
+echo $cost;
