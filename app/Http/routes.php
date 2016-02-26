@@ -11,21 +11,31 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+interface Fuel {
+    public function getPrice();
+}
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
+class Jeep
+{
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+
+    public function refuel($litres, Petrol $fuel)
+
+    {
+        return $litres * $this->fuel->getPrice();
+    }
+}
+
+class Petrol
+{
+    public function getPrice()
+    {
+        return 130.7;
+    }
+}
+
+$petrol = new Petrol;
+$car = new JeepWrangler($petrol);
+
+$cost = $car->refuel(60);
+echo $cost;
