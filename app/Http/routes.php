@@ -18,10 +18,14 @@ interface Fuel {
 class Jeep
 {
 
+    public function _construct(Petrol $fuel) {
+
+    }
 
     public function refuel($litres, Petrol $fuel)
 
     {
+        $fuel = new Petrol;
         return $litres * $this->fuel->getPrice();
     }
 }
@@ -34,8 +38,9 @@ class Petrol
     }
 }
 
-$petrol = new Petrol;
-$car = new JeepWrangler($petrol);
+//$gasoil = new Petrol;
+//$car = new Jeep($gasolina);
+//$gasolina = new Gasolina;
 
-$cost = $car->refuel(60);
-echo $cost;
+$car = $this->app->make('Jeep');
+echo $car->refuel(60);
